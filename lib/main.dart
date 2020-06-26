@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'servers/serverPage.dart';
 import 'domains/domainPage.dart';
 import 'storage/storagePage.dart';
+import 'components/dns.dart';
 
 void main() {
   runApp(MyApp());
@@ -24,7 +25,6 @@ class _MyAppState extends State<MyApp> {
         ListTile(
           title: Text('Open shell'),
           subtitle: Text('ssh, laravel, special shells...etc'),
-          onTap: () {},
         ),
         Divider(),
         ListTile(
@@ -37,7 +37,7 @@ class _MyAppState extends State<MyApp> {
             "Tools:\n- Console, DB Explorer\n- User manager\n\nDevOps:\n- crontab\n- git"),
       ],
     ),
-    Center(child: Text("Account\nPayment, helloka")),
+    AccountView(),
   ];
 
   _changeIndex(int index) {
@@ -75,6 +75,38 @@ class _MyAppState extends State<MyApp> {
                 icon: Icon(Icons.account_box), title: Text('Account')),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class AccountView extends StatelessWidget {
+  const AccountView({
+    Key key,
+    this.context,
+  }) : super(key: key);
+
+  final BuildContext context;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text("Account\nPayment, helloka"),
+          RaisedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => Dns(),
+                ),
+              );
+            },
+            child: Text('Data'),
+          ),
+        ],
       ),
     );
   }
